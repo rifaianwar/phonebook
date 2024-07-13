@@ -3,6 +3,7 @@ package com.r3s.phonebook.controller;
 import com.r3s.phonebook.model.request.ContactRequest;
 import com.r3s.phonebook.service.ContactService;
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +17,7 @@ public class ContactController {
 
     @Operation(summary = "Add new contact")
     @PostMapping("/create")
-    public ResponseEntity<?> createContact(@RequestBody ContactRequest inMsg) {
+    public ResponseEntity<?> createContact(@Valid @RequestBody ContactRequest inMsg) {
         Object object = contactService.createContact(inMsg);
         return new ResponseEntity<>(object, HttpStatus.OK);
     }
@@ -38,7 +39,7 @@ public class ContactController {
     @Operation(summary = "Update Contact",
             description = "set to null if you don't want to update")
     @PutMapping("/update")
-    ResponseEntity<?> doUpdate(@RequestBody ContactRequest inMsg) {
+    ResponseEntity<?> doUpdate(@Valid @RequestBody ContactRequest inMsg) {
         Object object = contactService.doUpdate(inMsg);
         return new ResponseEntity<>(object, HttpStatus.OK);
     }

@@ -6,7 +6,10 @@ import com.r3s.phonebook.model.response.GeneralResponse;
 import com.r3s.phonebook.repository.ContactRepository;
 import com.r3s.phonebook.utility.JsonUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -93,18 +96,12 @@ public class ContactService {
             }
 
             ContactEntity contact = contactRepository.findById(inMsg.getId()).get();
-            contact.setFirstName(inMsg.getFirstName() == null ? contact.getFirstName() :
-                    !inMsg.getFirstName().isEmpty() ? inMsg.getFirstName() : contact.getFirstName());
-            contact.setLastName(inMsg.getLastName() == null ? contact.getLastName() :
-                    !inMsg.getLastName().isEmpty() ? inMsg.getLastName() : contact.getLastName());
-            contact.setPhoneNumber(inMsg.getPhoneNumber() == null ? contact.getPhoneNumber() :
-                    !inMsg.getPhoneNumber().isEmpty() ? inMsg.getPhoneNumber() : contact.getPhoneNumber());
-            contact.setEmail(inMsg.getEmail() == null ? contact.getEmail() :
-                    !inMsg.getEmail().isEmpty() ? inMsg.getEmail() : contact.getEmail());
-            contact.setNote(inMsg.getNote() == null ? contact.getNote() :
-                    !inMsg.getNote().isEmpty() ? inMsg.getNote() : contact.getNote());
-            contact.setGrup(inMsg.getGroup() == null ? contact.getGrup() :
-                    !inMsg.getGroup().isEmpty() ? inMsg.getGroup() : contact.getGrup());
+            contact.setFirstName(inMsg.getFirstName());
+            contact.setLastName(inMsg.getLastName());
+            contact.setPhoneNumber(inMsg.getPhoneNumber());
+            contact.setEmail(inMsg.getEmail());
+            contact.setNote(inMsg.getNote());
+            contact.setGrup(inMsg.getGroup());
             contact.setUpdatedDate(new Date());
             contactRepository.save(contact);
             log.info("Category created: {}", contact);
