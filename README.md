@@ -6,5 +6,5 @@
     spring.datasource.url=jdbc:postgresql://localhost:5432/phonebook
     spring.datasource.username=postgres
     spring.datasource.password=passwordnya
-3.Setelah running buka localhost:9090/ untuk test via swagger
+3. Setelah running buka localhost:9090/ untuk test via swagger
    
