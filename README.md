@@ -1,4 +1,4 @@
 # phonebook
 
 Setelah running 
-bukan swagger untuk test localhost:9090/
+buka swagger untuk test localhost:9090/
